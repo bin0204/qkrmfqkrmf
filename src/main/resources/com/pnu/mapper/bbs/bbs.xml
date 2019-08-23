@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis map 선언 표시 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- BBSDaoImpl namespace와 일치해야한다. -->
+<mapper namespace="com.pnu.bbs.dao.BBSDao">
+
+	<!-- 메인에서 게시판 목록 -->
+	<select id="analysis_result" resultType="map">
+		SELECT *
+		FROM analysis_result 
+		ORDER BY GU,DONG
+	</select>
+	
+	<select id="analysis_store_peup" resultType="map">
+		SELECT *
+		FROM analysis_store_peup
+		ORDER BY DONG
+	</select>
+
+	<select id="store" resultType="map">
+		SELECT *
+		FROM store
+		ORDER BY DONG
+	</select>
+
+	<select id="selectDong" resultType="article"
+		parameterType="String">
+		<!-- parameterType : SQL문 호출시 전달되는 매개변수의 데이터 타입 지정 resultType : 조회되는 한 개의 레코드를 저장 할 곳 -->
+		<!--예전엔 부등호 쓰면 오류가 나서 <![cdata[내용]]> 로 가뒀는데,,,, 이젠 상관 없음 -->
+		<![CDATA[           
+			SELECT gu,dong,result1
+			FROM analysis
+			WHERE dong = #{dong}
+			]]>
+	</select>
+
+</mapper>
